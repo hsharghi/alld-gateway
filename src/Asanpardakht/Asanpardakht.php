@@ -9,7 +9,8 @@ use Larabookir\Gateway\PortInterface;
 
 class Asanpardakht extends PortAbstract implements PortInterface
 {
-    protected $gatewayConfig = 'asanpardakht1';
+    protected $gatewayConfig;
+    public $portNumber;
 
     public function __construct($port = 1)
     {
@@ -17,9 +18,8 @@ class Asanpardakht extends PortAbstract implements PortInterface
 
         $this->serverUrl = 'https://services.asanpardakht.net/paygate/merchantservices.asmx?wsdl';
 
-        if ($port == 2) {
-            $this->gatewayConfig = 'asanpardakht2';
-        }
+        $this->portNumber = $port;
+        $this->gatewayConfig = "asanpardakht{$port}";
 
     }
 
