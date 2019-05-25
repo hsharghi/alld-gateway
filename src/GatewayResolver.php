@@ -148,7 +148,7 @@ class GatewayResolver
 		} elseif ($port InstanceOf Sadad) {
 			$name = Enum::SADAD;
 		} elseif ($port InstanceOf Asanpardakht) {
-			$name = Enum::ASANPARDAKHT;
+            		$name = Enum::ASANPARDAKHT."-".$port->portNumber;
 		} elseif ($port InstanceOf Paypal) {
 			$name = Enum::PAYPAL;
 		} elseif ($port InstanceOf Payir) {
