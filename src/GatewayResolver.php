@@ -66,6 +66,8 @@ class GatewayResolver
             Enum::SAMAN,
             Enum::PAYPAL,
             Enum::ASANPARDAKHT,
+            Enum::ASANPARDAKHT . '-1',
+            Enum::ASANPARDAKHT . '-2',
             Enum::PAYIR
         ];
 	}
@@ -154,12 +156,16 @@ class GatewayResolver
 		} elseif ($port InstanceOf Payir) {
 			$name = Enum::PAYIR;
 		}  elseif(in_array(strtoupper($port),$this->getSupportedPorts())){
+		    if (stripos($port, Enum::ASANPARDAKHT) !== false) {
+		        $port = Enum::ASANPARDAKHT;
+            }
 			$port=ucfirst(strtolower($port));
 			$name=strtoupper($port);
 			$class=__NAMESPACE__.'\\'.$port.'\\'.$port;
 			if ($this->request->has('asan')) {
 			    $asanGateway = $this->request->get('asan');
 			    $port = new $class($asanGateway);
+			    $name = Enum::ASANPARDAKHT . "-{$asanGateway}";
             } else {
                 $port = new $class;
             }
