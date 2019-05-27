@@ -30,8 +30,8 @@ class SadadResult
         ),
         array(
             'code' => -1,
-            'message'=>'not_set',
-            'fa' => 'نتیجه استعلام نامعلوم و یا کاربر از انجام تراکنش منصرف شده است.',
+            'message'=>'not_exist',
+            'fa' => 'کاربر از انجام تراکنش منصرف شده است.',
             'en' => 'Result of the Inquiry Unknown or Customer Cancellation',
             'retry' => true,
         ),
