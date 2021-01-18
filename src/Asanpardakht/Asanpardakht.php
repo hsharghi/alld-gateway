@@ -16,7 +16,7 @@ class Asanpardakht extends PortAbstract implements PortInterface
     {
         parent::__construct();
 
-        $this->serverUrl = 'https://services.asanpardakht.net/paygate/merchantservices.asmx?wsdl';
+        $this->serverUrl = 'https://ipgsoap.asanpardakht.ir/paygate/merchantservices.asmx?wsdl';
 
         $this->portNumber = $port;
         $this->gatewayConfig = "asanpardakht{$port}";
