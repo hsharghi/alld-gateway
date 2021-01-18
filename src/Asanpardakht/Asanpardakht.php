@@ -260,7 +260,7 @@ class Asanpardakht extends PortAbstract implements PortInterface
 
         try {
 
-            $soap = $this->getSoapClient("https://services.asanpardakht.net/paygate/internalutils.asmx?WSDL");
+            $soap = $this->getSoapClient("https://ipgsoap.asanpardakht.ir/paygate/internalutils.asmx?WSDL");
             $params = array(
                 'aesKey' => $key,
                 'aesVector' => $iv,
@@ -289,7 +289,7 @@ class Asanpardakht extends PortAbstract implements PortInterface
 
         try {
 
-            $soap = $this->getSoapClient("https://services.asanpardakht.net/paygate/internalutils.asmx?WSDL");
+            $soap = $this->getSoapClient("https://ipgsoap.asanpardakht.ir/paygate/internalutils.asmx?WSDL");
             $params = array(
                 'aesKey' => $key,
                 'aesVector' => $iv,
