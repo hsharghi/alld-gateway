@@ -64,9 +64,10 @@ class Alldigitall extends PortAbstract implements PortInterface
 	 */
 	public function redirect()
 	{
-		$url = $this->gateUrl . $this->refId();
+		$success_url = $this->gateUrl . $this->refId() . '&transaction_id=' . $this->transactionId();
+		$cancel_url = $this->gateUrl . $this->refId() . '&transaction_id=' . $this->transactionId() . '&cancel=true';
 
-		return \View::make('gateway::alldigitall-redirector')->with(compact('url'));
+		return \View::make('gateway::alldigitall-redirector')->with(compact('success_url', 'cancel_url'));
 	}
 
 	/**
@@ -124,29 +125,20 @@ class Alldigitall extends PortAbstract implements PortInterface
 	 */
 	protected function verifyPayment()
 	{
-		if (!Input::has('au') && !Input::has('rs'))
-			throw new AlldigitallErrorException('درخواست غیر معتبر', -1);
-
-		$authority = Input::get('au');
-		$status = Input::get('rs');
-
-		if ($status != 0) {
-			$errorMessage = AlldigitallResult::errorMessage($status);
-			$this->newLog($status, $errorMessage);
-			throw new AlldigitallErrorException($errorMessage, $status);
-		}
-
-		if ($this->refId != $authority)
-			throw new AlldigitallErrorException('تراکنشی یافت نشد', -1);
-
 		$params = array(
 			'pin' => 0,
-			'authority' => $authority,
+			'authority' => '0',
 			'status' => 1
 		);
 
-		$this->trackingCode = $authority;
-		$this->transactionSucceed();
-		$this->newLog(0, AlldigitallResult::errorMessage(0));
+		$this->trackingCode = '0000';
+		if ($this->request->has('cancel')) {
+			$this->transactionFailed();
+			$this->newLog(104, 'پرداخت توسط کاربر لغو شده است');
+		} else {
+			$this->cardNumber = '0000-0000-0000-0000';
+			$this->transactionSucceed();
+			$this->newLog(0, 'پرداخت با موفقیت');
+		}
 	}
 }
