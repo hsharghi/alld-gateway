@@ -3,7 +3,6 @@
 namespace Larabookir\Gateway\Alldigitall;
 
 use Illuminate\Support\Facades\Input;
-use SoapClient;
 use Larabookir\Gateway\PortAbstract;
 use Larabookir\Gateway\PortInterface;
 
