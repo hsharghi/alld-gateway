@@ -68,7 +68,8 @@ class GatewayResolver
             Enum::ASANPARDAKHT,
             Enum::ASANPARDAKHT . '-1',
             Enum::ASANPARDAKHT . '-2',
-            Enum::PAYIR
+            Enum::PAYIR,
+			Enum::ALLDIGITALL
         ];
 	}
 
