@@ -66,8 +66,10 @@ class Alldigitall extends PortAbstract implements PortInterface
 	{
 		$success_url = $this->gateUrl . $this->refId() . '&transaction_id=' . $this->transactionId();
 		$cancel_url = $this->gateUrl . $this->refId() . '&transaction_id=' . $this->transactionId() . '&cancel=true';
+		$order_id = $this->refId();
+		$amount = $this->getPrice();
 
-		return \View::make('gateway::alldigitall-redirector')->with(compact('success_url', 'cancel_url'));
+		return \View::make('gateway::alldigitall-redirector')->with(compact('success_url', 'cancel_url', 'order_id', 'amount'));
 	}
 
 	/**
