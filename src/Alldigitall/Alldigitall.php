@@ -128,16 +128,11 @@ class Alldigitall extends PortAbstract implements PortInterface
 	 */
 	protected function verifyPayment()
 	{
-		$params = array(
-			'pin' => 0,
-			'authority' => '0',
-			'status' => 1
-		);
-
 		$this->trackingCode = '0000';
 		if (request()->has('cancel')) {
 			$this->transactionFailed();
 			$this->newLog(104, 'پرداخت توسط کاربر لغو شده است');
+			throw new AlldigitallErrorException('پرداخت توسط کاربر لغو شده است');
 		} else {
 			$this->cardNumber = '0000-0000-0000-0000';
 			$this->transactionSucceed();
