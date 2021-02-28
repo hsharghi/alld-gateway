@@ -135,7 +135,7 @@ class Alldigitall extends PortAbstract implements PortInterface
 		);
 
 		$this->trackingCode = '0000';
-		if ($this->request->has('cancel')) {
+		if (request()->has('cancel')) {
 			$this->transactionFailed();
 			$this->newLog(104, 'پرداخت توسط کاربر لغو شده است');
 		} else {
